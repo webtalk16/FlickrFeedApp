@@ -8,6 +8,7 @@ Mvc.Control.Main = function (name) {
         Mvc.Global = {};
         Mvc.Global.Utils = new Mvc.Control.Utils();
         Mvc.Global.Services = new Mvc.Control.Services();
+        Mvc.Global.Lang = 'en-us';
 
         var galleryPage = new Mvc.Control.GalleryPage(_name);
         galleryPage.Initialize();
