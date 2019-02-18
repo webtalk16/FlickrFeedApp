@@ -2,8 +2,8 @@ var Mvc = window.Mvc || {};
 Mvc.Global = window.Mvc.Global || {};
 
 Mvc.Global.Resource = {
-    months: {
-        'en-us': [
+    'en-us': {
+        months: [
             'January',
             'February',
             'March',
@@ -17,9 +17,12 @@ Mvc.Global.Resource = {
             'November',
             'December'
         ],
-        'fr-fr': [
+        showAllLink: 'Show Photos by All'
+    },
+    'fr-fr': {
+        months: [
             'janvier',
-            'février',
+            'fevrier',
             'mars',
             'avril',
             'mai',
@@ -29,7 +32,8 @@ Mvc.Global.Resource = {
             'septembre',
             'octobre',
             'novembre',
-            'décembre'
-        ]
+            'decembre'
+        ],
+        showAllLink: 'Afficher les photos par tous'
     }
 };

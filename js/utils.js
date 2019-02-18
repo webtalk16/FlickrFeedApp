@@ -20,6 +20,6 @@ Mvc.Control.Utils = function () {
     }
 
     this.GetMonthText = function (month) {
-        return Mvc.Global.Resource.months[Mvc.Global.Lang][month];
+        return Mvc.Global.Resource[Mvc.Global.Lang].months[month];
     }
 }

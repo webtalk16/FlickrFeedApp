@@ -30,7 +30,7 @@ Mvc.Control.GalleryPage = function (context) {
             html.push('         <div id="' + _context + '_HeaderLang" onclick="Mvc.Global.GalleryPage.ChangeLang();">' + getLang() + '</div>');
             html.push('         <h1 id="' + _context + '_HeaderTitle">' + results.title + '</h1>');
             if (hasFilter) {
-                html.push('     <div class="' + _context + '_ShowAll" onclick="Mvc.Global.GalleryPage.Open(\'\')">Show Photos by All</div>');
+                html.push('     <div class="' + _context + '_ShowAll" onclick="Mvc.Global.GalleryPage.Open(\'\')">' + Mvc.Global.Resource[Mvc.Global.Lang].showAllLink + '</div>');
             }
             html.push('     </div>');
             for (let i = 0; i < results.items.length; i++) {
