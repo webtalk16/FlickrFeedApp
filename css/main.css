@@ -3,8 +3,9 @@ body {
     padding: 0px;
     margin: 0px;
     font-family: Arial, Helvetica, sans-serif;
+    font-size:16px;
+    color:#333333;
     background-color: #F7F7F7;
-    color: #333333;
 }
 body, span, div, a, img, h1, h2 {
     -webkit-user-select: none;
@@ -12,11 +13,24 @@ body, span, div, a, img, h1, h2 {
     -ms-user-select: none;
     user-select: none;
 }
-#root {
-}
 #MainGarleryPage_Container {
     text-align: center;
 }
+#MainGarleryPage_HeaderLang {
+    position:absolute;
+    top:7px;
+    right:10px;
+    cursor:pointer;
+}
+#MainGarleryPage_HeaderTitle {
+    -webkit-transition: opacity 1s linear;
+    transition: opacity 5s linear;
+}
+    #MainGarleryPage_Header .MainGarleryPage_ShowAll {
+        padding-bottom:7px;
+        color: blue;
+        cursor: pointer;
+    }
 .MainGarleryPage_Item {
     display: inline-block;
     width: 14%;
@@ -42,6 +56,10 @@ body, span, div, a, img, h1, h2 {
 .MainGarleryPage_Item_Author {
     margin-bottom: 7px;
 }
+    .MainGarleryPage_Item_Author .ThumbValue {
+        color: blue;
+        cursor: pointer;
+    }
 .MainGarleryPage_Item_Title {
     margin-bottom: 7px;
 }
@@ -70,10 +88,24 @@ body, span, div, a, img, h1, h2 {
     .MainGarleryPage_Item {
         width: 45%;
     }
+    #MainGarleryPage_HeaderTitle {
+        font-size: .9em;
+    }
 }
 
 @media only screen and (max-width: 400px) {
     .MainGarleryPage_Item {
         width: 95%;
+    }
+    #MainGarleryPage_Header {
+        background-color: #000000;
+        color: #CCCCCC;
+    }
+    #MainGarleryPage_HeaderTitle {
+        margin: 0px;
+        padding: 20px 0px;
+    }
+    body {
+        font-size: .8em;
     }
 }

@@ -13,19 +13,26 @@ Mvc.Control.GalleryPage = function (context) {
         _container = newElement;
         root.appendChild(newElement);
 
-        _that.Open();
+        _that.Open('');
     };
 
-    this.Open = function () {
-        Mvc.Global.Utils.GetFeed(updateHTML);
+    this.Open = function (filters) {
+        Mvc.Global.Utils.GetFeed(filters, updateHTML);
     }
 
-    function updateHTML(jsonResponse) {
-        let results = JSON.parse(jsonResponse);
+    function updateHTML(jsonResponse, hasFilter) {
+        let results = jsonResponse;
         console.log(results);
         if (results != null && results.items != null && results.items.length) {
             let html = [];
             html.push('<div id="' + _context + '_Container">');
+            html.push('     <div id="' + _context + '_Header">');
+            html.push('         <div id="' + _context + '_HeaderLang" onclick="Mvc.Global.GalleryPage.ChangeLang();">' + getLang() + '</div>');
+            html.push('         <h1 id="' + _context + '_HeaderTitle">' + results.title + '</h1>');
+            if (hasFilter) {
+                html.push('     <div class="' + _context + '_ShowAll" onclick="Mvc.Global.GalleryPage.Open(\'\')">Show Photos by All</div>');
+            }
+            html.push('     </div>');
             for (let i = 0; i < results.items.length; i++) {
                 html.push(' <div class="' + _context + '_Item">');
                 html.push('     <div class="' + _context + '_Item_Thumb">');
@@ -34,7 +41,7 @@ Mvc.Control.GalleryPage = function (context) {
                 html.push('         <div class="' + _context + '_Item_Date">');
                 html.push('             <div class="ThumbLabel">Date Taken:</div><div class="ThumbValue">' + getDate(results.items[i].date_taken) + '&nbsp;</div>');
                 html.push('         </div>');
-                html.push('         <div class="' + _context + '_Item_Author">');
+                html.push('         <div class="' + _context + '_Item_Author" onclick="Mvc.Global.GalleryPage.Open(' + '\'&id=' + results.items[i].author_id + '\'' + ')">');
                 html.push('             <div class="ThumbLabel">Author:</div><div class="ThumbValue">' + results.items[i].author + '&nbsp;</div>');
                 html.push('         </div>');
                 html.push('         <div class="' + _context + '_Item_Title">');
@@ -50,25 +57,35 @@ Mvc.Control.GalleryPage = function (context) {
     }
     function getDate(date) {
         let formatedDate = new Date(date);
-        formatedDate = getMonthText(formatedDate.getMonth()) + ' ' + formatedDate.getDate() + ', ' + formatedDate.getFullYear();
+        formatedDate = Mvc.Global.Utils.GetMonthText(formatedDate.getMonth()) + ' ' + formatedDate.getDate() + ', ' + formatedDate.getFullYear();
         return formatedDate;
     }
 
-    function getMonthText(month) {
-        let months = [
-            "January",
-            "February",
-            "March",
-            "April",
-            "May",
-            "June",
-            "July",
-            "August",
-            "September",
-            "October",
-            "November",
-            "December"
-        ];
-        return months[month];
+    this.ChangeLang = function () {
+        let lang = '';
+        switch (Mvc.Global.Lang) {
+            case 'en-us':
+                Mvc.Global.Lang = 'fr-fr';
+                document.body.setAttribute('lang', 'fr');
+                break;
+            case 'fr-fr':
+                Mvc.Global.Lang = 'en-us';
+                document.body.setAttribute('lang', 'en');
+                break;
+        }
+        _that.Open('');
+    }
+
+    function getLang() {
+        let lang = '';
+        switch (Mvc.Global.Lang) {
+            case 'en-us':
+                lang = 'French';
+                break;
+            case 'fr-fr':
+                lang = 'English';
+                break;
+        }
+        return lang;
     }
 }

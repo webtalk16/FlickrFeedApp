@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <title>FlickrFeedApp</title>
@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height">
 
     <link rel="stylesheet" href="css/main.css" />
+    <script src="js/resource.js"></script>
     <script src="js/main.js"></script>
-    <script src="ws/services.js"></script>
     <script src="js/utils.js"></script>
     <script src="js/gallery.js"></script>
 
@@ -17,7 +17,7 @@
     <div id="root"></div>
 
     <script type="text/javascript">
-        var Main = new Mvc.Control.Main("Main");
+        let Main = new Mvc.Control.Main("Main");
 
         document.addEventListener("DOMContentLoaded", docLoaded, false);
         function docLoaded() {
